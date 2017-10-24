@@ -1,0 +1,103 @@
+﻿@model CS4790PM.Models.CustomerTransaction
+
+@{
+    ViewBag.Title = "Customer Details";
+}
+
+<h2>Customer Details</h2>
+
+<div>
+    <h4>Customer Info</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.customer.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customer.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customer.Balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer.Balance)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.customer.Id }) 
+</p>
+
+<h4>Transaction History</h4>
+<p>
+    @Html.ActionLink("New Transacation", "Create", "Transaction", new { id = Model.customer.Id }, null)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.transactions[0].Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.transactions[0].TransDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.transactions[0].TransDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.transactions[0].TransAmt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.transactions[0].CustID)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.transactions)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransAmt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustID)
+            </td>
+            <td>            
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |              
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+   @Html.ActionLink("Back to Customers", "Index", "Customer")
+</p>
